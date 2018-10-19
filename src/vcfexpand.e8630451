@@ -1,0 +1,134 @@
+tput: No value for $TERM and no -T specified
+tput: No value for $TERM and no -T specified
+[0;33m21:25:50 [biomap][0m[0;35m Ny821 [Ny821xB73] not in VCF samples[0m
+[0;33m21:25:50 [biomap][0m[0;35m DKFAPW [DKFAPWxB73] not in VCF samples[0m
+[0;33m21:25:50 [biomap][0m[0;35m H99 [H99xB73] not in VCF samples[0m
+[0;33m21:25:50 [biomap][0m[0;35m NKS8326 [NKS8326xMo17] not in VCF samples[0m
+[0;33m21:25:51 [biomap][0m[0;35m DKFAPW [DKFAPWxMo17] not in VCF samples[0m
+[0;33m21:25:51 [biomap][0m[0;35m Ny821 [Ny821xPH207] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m NKS8326 [NKS8326xPH207] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m Ny821 [Ny821] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m H99 [H99] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m Ny821 [Ny821xMo17] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m W64A [W64AxMo17] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m W64A [W64A] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m H99 [H99xPH207] not in VCF samples[0m
+[0;33m21:25:52 [biomap][0m[0;35m W64A [W64AxB73] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m H99 [H99xMo17] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m W64A [W64AxPH207] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m DKFAPW [DKFAPWxPH207] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m DKFAPW [DKFAPW] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m NKS8326 [NKS8326] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m W64AxMo17xB73 -> W64AxMo17[0m
+[0;33m21:25:53 [biomap][0m[0;35m W64A [W64AxMo17xB73] not in VCF samples[0m
+[0;33m21:25:53 [biomap][0m[0;35m NKS8326 [NKS8326xB73] not in VCF samples[0m
+[0;33m07:08:49 [base][0m[0;35m vcf hybrid_bed ase29/LH156xMo17.vcf > ase29/LH156xMo17.bed[0m
+[0;33m07:12:39 [base][0m[0;35m vcf hybrid_bed ase29/PHN11xPH207.vcf > ase29/PHN11xPH207.bed[0m
+[0;33m07:13:21 [base][0m[0;35m vcf hybrid_bed ase29/PH207.vcf > ase29/PH207.bed[0m
+[0;33m07:13:42 [base][0m[0;35m vcf hybrid_bed ase29/PHG35.vcf > ase29/PHG35.bed[0m
+[0;33m07:14:11 [base][0m[0;35m vcf hybrid_bed ase29/PHG29xPH207.vcf > ase29/PHG29xPH207.bed[0m
+[0;33m07:14:22 [base][0m[0;35m vcf hybrid_bed ase29/NKH8431xMo17.vcf > ase29/NKH8431xMo17.bed[0m
+[0;33m07:14:45 [base][0m[0;35m vcf hybrid_bed ase29/LH156xB73.vcf > ase29/LH156xB73.bed[0m
+[0;33m07:15:28 [base][0m[0;35m vcf hybrid_bed ase29/PHJ40xMo17.vcf > ase29/PHJ40xMo17.bed[0m
+[0;33m07:15:47 [base][0m[0;35m vcf hybrid_bed ase29/Q381xB73.vcf > ase29/Q381xB73.bed[0m
+[0;33m07:16:29 [base][0m[0;35m vcf hybrid_bed ase29/PHG39xB73.vcf > ase29/PHG39xB73.bed[0m
+[0;33m07:16:52 [base][0m[0;35m vcf hybrid_bed ase29/PHN11xMo17.vcf > ase29/PHN11xMo17.bed[0m
+[0;33m07:18:51 [base][0m[0;35m vcf hybrid_bed ase29/NC230xMo17.vcf > ase29/NC230xMo17.bed[0m
+[0;33m07:19:15 [base][0m[0;35m vcf hybrid_bed ase29/CR1HtxB73.vcf > ase29/CR1HtxB73.bed[0m
+[0;33m07:19:40 [base][0m[0;35m vcf hybrid_bed ase29/PH207xMo17.vcf > ase29/PH207xMo17.bed[0m
+[0;33m07:20:55 [base][0m[0;35m vcf hybrid_bed ase29/PH207xB73.vcf > ase29/PH207xB73.bed[0m
+[0;33m07:21:33 [base][0m[0;35m vcf hybrid_bed ase29/MoGxMo17.vcf > ase29/MoGxMo17.bed[0m
+[0;33m07:21:55 [base][0m[0;35m vcf hybrid_bed ase29/NKH8431xPH207.vcf > ase29/NKH8431xPH207.bed[0m
+[0;33m07:22:39 [base][0m[0;35m vcf hybrid_bed ase29/B84xPH207.vcf > ase29/B84xPH207.bed[0m
+[0;33m07:23:46 [base][0m[0;35m vcf hybrid_bed ase29/B73.vcf > ase29/B73.bed[0m
+[0;33m07:24:25 [base][0m[0;35m vcf hybrid_bed ase29/PHG50xB73.vcf > ase29/PHG50xB73.bed[0m
+[0;33m07:24:49 [base][0m[0;35m vcf hybrid_bed ase29/PHW65xPH207.vcf > ase29/PHW65xPH207.bed[0m
+[0;33m07:25:51 [base][0m[0;35m vcf hybrid_bed ase29/PHG83xPH207.vcf > ase29/PHG83xPH207.bed[0m
+[0;33m07:26:47 [base][0m[0;35m vcf hybrid_bed ase29/LH93xPH207.vcf > ase29/LH93xPH207.bed[0m
+[0;33m07:28:01 [base][0m[0;35m vcf hybrid_bed ase29/LH145xPH207.vcf > ase29/LH145xPH207.bed[0m
+[0;33m07:29:04 [base][0m[0;35m vcf hybrid_bed ase29/Q381xPH207.vcf > ase29/Q381xPH207.bed[0m
+[0;33m07:31:48 [base][0m[0;35m vcf hybrid_bed ase29/LH123HtxB73.vcf > ase29/LH123HtxB73.bed[0m
+[0;33m07:32:10 [base][0m[0;35m vcf hybrid_bed ase29/PHW65xB73.vcf > ase29/PHW65xB73.bed[0m
+[0;33m07:33:16 [base][0m[0;35m vcf hybrid_bed ase29/PHN11.vcf > ase29/PHN11.bed[0m
+[0;33m07:34:16 [base][0m[0;35m vcf hybrid_bed ase29/B84.vcf > ase29/B84.bed[0m
+[0;33m07:35:08 [base][0m[0;35m vcf hybrid_bed ase29/Q381.vcf > ase29/Q381.bed[0m
+[0;33m07:36:20 [base][0m[0;35m vcf hybrid_bed ase29/PHN11xB73.vcf > ase29/PHN11xB73.bed[0m
+[0;33m07:37:01 [base][0m[0;35m vcf hybrid_bed ase29/MoG.vcf > ase29/MoG.bed[0m
+[0;33m07:38:22 [base][0m[0;35m vcf hybrid_bed ase29/LH85xB73.vcf > ase29/LH85xB73.bed[0m
+[0;33m07:39:20 [base][0m[0;35m vcf hybrid_bed ase29/Mo45xMo17.vcf > ase29/Mo45xMo17.bed[0m
+[0;33m07:40:36 [base][0m[0;35m vcf hybrid_bed ase29/PHG35xMo17.vcf > ase29/PHG35xMo17.bed[0m
+[0;33m07:41:43 [base][0m[0;35m vcf hybrid_bed ase29/B73xMo17.vcf > ase29/B73xMo17.bed[0m
+[0;33m07:42:56 [base][0m[0;35m vcf hybrid_bed ase29/PHB47xPH207.vcf > ase29/PHB47xPH207.bed[0m
+[0;33m07:43:48 [base][0m[0;35m vcf hybrid_bed ase29/PHW65.vcf > ase29/PHW65.bed[0m
+[0;33m07:45:04 [base][0m[0;35m vcf hybrid_bed ase29/LH85xPH207.vcf > ase29/LH85xPH207.bed[0m
+[0;33m07:51:42 [base][0m[0;35m vcf hybrid_bed ase29/PHG47xMo17.vcf > ase29/PHG47xMo17.bed[0m
+[0;33m08:00:31 [base][0m[0;35m vcf hybrid_bed ase29/PHG72xB73.vcf > ase29/PHG72xB73.bed[0m
+[0;33m08:00:46 [base][0m[0;35m vcf hybrid_bed ase29/Mo17xPHG29.vcf > ase29/Mo17xPHG29.bed[0m
+[0;33m08:01:05 [base][0m[0;35m vcf hybrid_bed ase29/PHG29xMo17.vcf > ase29/PHG29xMo17.bed[0m
+[0;33m08:01:25 [base][0m[0;35m vcf hybrid_bed ase29/LH85.vcf > ase29/LH85.bed[0m
+[0;33m08:01:48 [base][0m[0;35m vcf hybrid_bed ase29/Mo44xMo17.vcf > ase29/Mo44xMo17.bed[0m
+[0;33m08:02:07 [base][0m[0;35m vcf hybrid_bed ase29/PHG35xPH207.vcf > ase29/PHG35xPH207.bed[0m
+[0;33m08:02:22 [base][0m[0;35m vcf hybrid_bed ase29/AS5707.vcf > ase29/AS5707.bed[0m
+[0;33m08:02:50 [base][0m[0;35m vcf hybrid_bed ase29/Mo45xB73.vcf > ase29/Mo45xB73.bed[0m
+[0;33m08:03:28 [base][0m[0;35m vcf hybrid_bed ase29/B84xMo17.vcf > ase29/B84xMo17.bed[0m
+[0;33m08:03:55 [base][0m[0;35m vcf hybrid_bed ase29/Mo44xB73.vcf > ase29/Mo44xB73.bed[0m
+[0;33m08:04:14 [base][0m[0;35m vcf hybrid_bed ase29/Mo45.vcf > ase29/Mo45.bed[0m
+[0;33m08:05:03 [base][0m[0;35m vcf hybrid_bed ase29/PHG39xPH207.vcf > ase29/PHG39xPH207.bed[0m
+[0;33m08:05:23 [base][0m[0;35m vcf hybrid_bed ase29/PHJ40xPH207.vcf > ase29/PHJ40xPH207.bed[0m
+[0;33m08:05:47 [base][0m[0;35m vcf hybrid_bed ase29/PHB47xMo17.vcf > ase29/PHB47xMo17.bed[0m
+[0;33m08:06:35 [base][0m[0;35m vcf hybrid_bed ase29/Mo45xPH207.vcf > ase29/Mo45xPH207.bed[0m
+[0;33m08:07:03 [base][0m[0;35m vcf hybrid_bed ase29/Oh43xPH207.vcf > ase29/Oh43xPH207.bed[0m
+[0;33m08:07:41 [base][0m[0;35m vcf hybrid_bed ase29/PHG39.vcf > ase29/PHG39.bed[0m
+[0;33m08:08:02 [base][0m[0;35m vcf hybrid_bed ase29/NKH8431xB73.vcf > ase29/NKH8431xB73.bed[0m
+[0;33m08:09:07 [base][0m[0;35m vcf hybrid_bed ase29/NC230.vcf > ase29/NC230.bed[0m
+[0;33m08:10:01 [base][0m[0;35m vcf hybrid_bed ase29/PHG72.vcf > ase29/PHG72.bed[0m
+[0;33m08:11:00 [base][0m[0;35m vcf hybrid_bed ase29/Oh43xB73.vcf > ase29/Oh43xB73.bed[0m
+[0;33m08:11:36 [base][0m[0;35m vcf hybrid_bed ase29/NC230xPH207.vcf > ase29/NC230xPH207.bed[0m
+[0;33m08:12:11 [base][0m[0;35m vcf hybrid_bed ase29/Mo17xPH207.vcf > ase29/Mo17xPH207.bed[0m
+[0;33m08:12:39 [base][0m[0;35m vcf hybrid_bed ase29/PHG47.vcf > ase29/PHG47.bed[0m
+[0;33m08:13:14 [base][0m[0;35m vcf hybrid_bed ase29/PHG29.vcf > ase29/PHG29.bed[0m
+[0;33m08:14:21 [base][0m[0;35m vcf hybrid_bed ase29/Mo17xB73.vcf > ase29/Mo17xB73.bed[0m
+[0;33m08:15:14 [base][0m[0;35m vcf hybrid_bed ase29/PHG50xMo17.vcf > ase29/PHG50xMo17.bed[0m
+[0;33m08:15:40 [base][0m[0;35m vcf hybrid_bed ase29/PHG72xPH207.vcf > ase29/PHG72xPH207.bed[0m
+[0;33m08:16:37 [base][0m[0;35m vcf hybrid_bed ase29/PHB47.vcf > ase29/PHB47.bed[0m
+[0;33m08:18:11 [base][0m[0;35m vcf hybrid_bed ase29/CR1HtxPH207.vcf > ase29/CR1HtxPH207.bed[0m
+[0;33m08:18:31 [base][0m[0;35m vcf hybrid_bed ase29/NC230xB73.vcf > ase29/NC230xB73.bed[0m
+[0;33m08:19:09 [base][0m[0;35m vcf hybrid_bed ase29/PHW65xMo17.vcf > ase29/PHW65xMo17.bed[0m
+[0;33m08:19:27 [base][0m[0;35m vcf hybrid_bed ase29/PHG72xMo17.vcf > ase29/PHG72xMo17.bed[0m
+[0;33m08:19:46 [base][0m[0;35m vcf hybrid_bed ase29/PHB47xB73.vcf > ase29/PHB47xB73.bed[0m
+[0;33m08:20:41 [base][0m[0;35m vcf hybrid_bed ase29/CR1HtxMo17.vcf > ase29/CR1HtxMo17.bed[0m
+[0;33m08:20:55 [base][0m[0;35m vcf hybrid_bed ase29/PHG83xB73.vcf > ase29/PHG83xB73.bed[0m
+[0;33m08:20:59 [base][0m[0;35m vcf hybrid_bed ase29/LH123Ht.vcf > ase29/LH123Ht.bed[0m
+[0;33m08:21:49 [base][0m[0;35m vcf hybrid_bed ase29/PHG50.vcf > ase29/PHG50.bed[0m
+[0;33m08:22:14 [base][0m[0;35m vcf hybrid_bed ase29/PHG47xB73.vcf > ase29/PHG47xB73.bed[0m
+[0;33m08:23:00 [base][0m[0;35m vcf hybrid_bed ase29/PHJ40.vcf > ase29/PHJ40.bed[0m
+[0;33m08:23:23 [base][0m[0;35m vcf hybrid_bed ase29/PHG47xPH207.vcf > ase29/PHG47xPH207.bed[0m
+[0;33m08:24:14 [base][0m[0;35m vcf hybrid_bed ase29/B73xPH207.vcf > ase29/B73xPH207.bed[0m
+[0;33m08:33:16 [base][0m[0;35m vcf hybrid_bed ase29/PHG29xB73.vcf > ase29/PHG29xB73.bed[0m
+[0;33m08:34:25 [base][0m[0;35m vcf hybrid_bed ase29/LH93.vcf > ase29/LH93.bed[0m
+[0;33m08:35:10 [base][0m[0;35m vcf hybrid_bed ase29/PHG83.vcf > ase29/PHG83.bed[0m
+[0;33m08:35:20 [base][0m[0;35m vcf hybrid_bed ase29/MoGxB73.vcf > ase29/MoGxB73.bed[0m
+[0;33m08:36:24 [base][0m[0;35m vcf hybrid_bed ase29/PHG35xB73.vcf > ase29/PHG35xB73.bed[0m
+[0;33m08:36:46 [base][0m[0;35m vcf hybrid_bed ase29/LH145xMo17.vcf > ase29/LH145xMo17.bed[0m
+[0;33m08:37:23 [base][0m[0;35m vcf hybrid_bed ase29/LH93xMo17.vcf > ase29/LH93xMo17.bed[0m
+[0;33m08:37:59 [base][0m[0;35m vcf hybrid_bed ase29/DKHBA1.vcf > ase29/DKHBA1.bed[0m
+[0;33m08:38:24 [base][0m[0;35m vcf hybrid_bed ase29/Mo17xOh43.vcf > ase29/Mo17xOh43.bed[0m
+[0;33m08:39:14 [base][0m[0;35m vcf hybrid_bed ase29/B84xB73.vcf > ase29/B84xB73.bed[0m
+[0;33m08:46:22 [base][0m[0;35m vcf hybrid_bed ase29/Mo44.vcf > ase29/Mo44.bed[0m
+[0;33m08:47:06 [base][0m[0;35m vcf hybrid_bed ase29/LH145.vcf > ase29/LH145.bed[0m
+[0;33m08:47:28 [base][0m[0;35m vcf hybrid_bed ase29/LH156.vcf > ase29/LH156.bed[0m
+[0;33m08:48:33 [base][0m[0;35m vcf hybrid_bed ase29/NKH8431.vcf > ase29/NKH8431.bed[0m
+[0;33m08:50:27 [base][0m[0;35m vcf hybrid_bed ase29/Mo17.vcf > ase29/Mo17.bed[0m
+[0;33m08:50:56 [base][0m[0;35m vcf hybrid_bed ase29/CR1Ht.vcf > ase29/CR1Ht.bed[0m
+[0;33m08:51:19 [base][0m[0;35m vcf hybrid_bed ase29/LH145xB73.vcf > ase29/LH145xB73.bed[0m
+[0;33m08:52:22 [base][0m[0;35m vcf hybrid_bed ase29/PHJ40xB73.vcf > ase29/PHJ40xB73.bed[0m
+[0;33m08:52:48 [base][0m[0;35m vcf hybrid_bed ase29/PHG39xMo17.vcf > ase29/PHG39xMo17.bed[0m
+[0;33m08:53:09 [base][0m[0;35m vcf hybrid_bed ase29/Q381xMo17.vcf > ase29/Q381xMo17.bed[0m
+[0;33m08:53:31 [base][0m[0;35m vcf hybrid_bed ase29/Oh43xMo17.vcf > ase29/Oh43xMo17.bed[0m
+[0;33m08:53:54 [base][0m[0;35m vcf hybrid_bed ase29/LH123HtxPH207.vcf > ase29/LH123HtxPH207.bed[0m
+[0;33m08:54:15 [base][0m[0;35m vcf hybrid_bed ase29/PHG83xMo17.vcf > ase29/PHG83xMo17.bed[0m
+[0;33m08:55:03 [base][0m[0;35m vcf hybrid_bed ase29/LH93xB73.vcf > ase29/LH93xB73.bed[0m
+[0;33m08:55:28 [base][0m[0;35m vcf hybrid_bed ase29/LH123HtxMo17.vcf > ase29/LH123HtxMo17.bed[0m
+[0;33m08:57:29 [base][0m[0;35m vcf hybrid_bed ase29/PHG50xPH207.vcf > ase29/PHG50xPH207.bed[0m
+[0;33m08:58:09 [base][0m[0;35m vcf hybrid_bed ase29/LH85xMo17.vcf > ase29/LH85xMo17.bed[0m
+[0;33m08:58:30 [base][0m[0;35m vcf hybrid_bed ase29/Oh43.vcf > ase29/Oh43.bed[0m

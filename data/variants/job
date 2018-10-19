@@ -1,0 +1,18 @@
+#PBS -l nodes=1:ppn=1,mem=110gb,walltime=10:00:00
+#PBS -m ae
+#PBS -M zhoux379@umn.edu
+#PBS -q ram256g
+
+FI=biomap35.1.expanded.vcf.gz
+FO=biomap35.2.lifted.vcf
+FI=biomap29.2.expanded.vcf.gz
+FO=biomap29.3.lifted.vcf
+FI=biomap62.1.gatk.snp.vcf.gz
+FO=biomap62.2.lifted.vcf.gz
+
+cd $biomap/data/variants
+gatk LiftoverVcf --java-options "-Xmx100G" \
+  -I $FI -O $FO \
+  -C $genome/B73/08_seq_map/mapf.chain \
+  -R $genome/B73/21_dbs/gatk/db.fasta \
+  --REJECT unmap.vcf
