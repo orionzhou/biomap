@@ -159,15 +159,16 @@ tp = ta %>% inner_join(th[,1:5], by = 'SampleID') %>%
     mutate(ntc = n0 + n1 + ncft, nt = n0 + n1,
            pcft = ncft / ntc, pref = n0 / nt) %>%
     filter(ntc >= 20)
-
+tps = tp %>% count(SampleID, Genotype, Tissue) %>%
+    mutate(txt = sprintf("%s:%d", Genotype, n))
 p = ggplot(tp) +
     geom_boxplot(aes(x = SampleID, y = pcft, color = inbred), outlier.shape = NA, width = .7) +
-    scale_x_discrete(breaks = tp$SampleID, labels = tp$Genotype) +
+    scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
     scale_y_continuous(name = 'Proportion conflicting reads') +
     coord_flip() +
     facet_wrap(.~Tissue, scale = 'free', ncol = 5) + 
     scale_color_aaas(labels = c('inbred','hybrid')) +
-    otheme(xtitle = T, xtext = T, ytitle = T, ytext = T, 
+    otheme(xtitle = T, xtext = T, ytitle = F, ytext = T, 
            ygrid = T, xticks = T, yticks = T,
            legend.pos = 'top.right') +
     theme(axis.text.y = element_text(size = 7))
@@ -183,13 +184,13 @@ tps = tp %>% count(SampleID, Genotype, Tissue) %>%
 p = ggplot(tp) +
     geom_boxplot(aes(x = SampleID, y = pref, color = inbred), outlier.shape = NA, width = .7) +
     scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
-    scale_y_continuous(name = 'Proportion reads w. B73 allele') +
+    scale_y_continuous(name = 'Proportion reads w. paternal allele') +
     coord_flip() +
     facet_wrap(.~Tissue, scale = 'free', ncol = 5) + 
     scale_color_aaas(labels = c('inbred','hybrid')) +
-    otheme(xtitle = T, xtext = T, ytitle = T, ytext = T, 
+    otheme(xtitle = T, xtext = T, ytitle = F, ytext = T, 
            ygrid = T, xticks = T, yticks = T,
-           legend.pos = 'top.center.out') +
+           legend.pos = 'bottom.right') +
     theme(axis.text.y = element_text(size = 7))
 fo = file.path(dirw, '15.ase.pref.pdf')
 ggsave(p, file = fo, width = 10, height = 12)
