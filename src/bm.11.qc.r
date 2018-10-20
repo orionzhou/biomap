@@ -24,27 +24,26 @@ tree = as.phylo(ehc)
 lnames = ehc$labels[ehc$order]
 #
 tp = th %>% mutate(taxa = SampleID, lab = SampleID) 
-if(length(tiss)>1) tp = tp %>% mutate(lab = sprintf("%s %s", lab, Tissue), lab)
-if(length(genos)>1) tp = tp %>% mutate(lab = sprintf("%s %s", lab, Genotype), lab)
-if(length(treas)>1) tp = tp %>% mutate(lab = sprintf("%s %s", lab, Treatment), lab)
-if(length(reps)>1) tp = tp %>% mutate(lab = sprintf("%s %s", lab, Replicate), lab)
+tp = tp %>% mutate(lab = sprintf("%s %s", lab, Tissue), lab)
+tp = tp %>% mutate(lab = sprintf("%s %s", lab, Genotype), lab)
+tp = tp %>% mutate(lab = sprintf("%s %s", lab, Replicate), lab)
 t_hc = tp %>% select(taxa, everything())
 
 thp = mutate(th, 
     lab = sprintf("%s %s %s %s", SampleID, Tissue, Genotype, Replicate))
 p1 = ggtree(tree) + 
     #geom_tiplab(size = 4, color = 'black', offset = 0.04) +
-    ggplot2::xlim(0, 15) + 
+    ggplot2::xlim(0, 70) + 
     theme_tree2()
 p1 = p1 %<+% thp + 
-    geom_tiplab(aes(label = lab), size = 4, offset = 0.04) + 
+    geom_tiplab(aes(label = lab), size = 2, offset = 0.04) + 
     #geom_text(aes(color = as.character(gt_ok), label = gt), size = 4, nudge_x = 6, hjust = 0) + 
     scale_color_manual(values = c("black", "royalblue", "tomato"))
-fo = sprintf("%s/08.hclust.pdf", dirw, cor_opt, hc_opt)
+fo = file.path(dirw, '08.hclust.pdf')
 ggsave(p1, filename = fo, width = 12, height = 30)
 #}}}
 
-#{{{
+#{{{ pca
 pca <- prcomp(asinh(e), center = F, scale. = F)
 x = pca['rotation'][[1]]
 y = summary(pca)$importance
@@ -108,7 +107,7 @@ fp = sprintf("%s/12.tsne.pdf", dirw)
 ggsave(p_tsne, filename = fp, width = 7, height = 7)
 #}}}
 
-#{{{ heatmap
+#{{{ # heatmap
 tps = th %>% select(-Treatment, -paired) %>%
     mutate(Tissue = factor(Tissue, levels = tissues23),
            Genotype = factor(Genotype, levels = gts)) %>%
@@ -150,5 +149,52 @@ p = ggplot(tp) +
     theme(legend.key.size = unit(.8, 'lines'), legend.text = element_text(size = 7))
 fo = sprintf("%s/08.heatmap.pdf", dirw)
 ggsave(p, file = fo, width = 9, height = 8.5)
+#}}}
+
+#{{{
+#}}}
+
+#{{{ ASE stats / QC
+ti1 = ta %>% inner_join(th[,1:3], by = 'SampleID') %>%
+    mutate(ntc = n0 + n1 + ncft, nt = n0 + n1,
+           pcft = ncft / ntc, pref = n0 / nt) %>%
+    filter(nt >= 10, pcft <= .05)
+
+tps = th %>% mutate(Tissue = factor(Tissue, levels = tissues23)) %>%
+    arrange(Tissue, Genotype, Replicate) %>%
+    mutate(i = 1:length(SampleID)) 
+tpx = tps %>% group_by(Tissue) %>%
+    summarise(xmed = mean(i), xmin = min(i), xmax = max(i)) %>% ungroup()
+tps = tps %>% mutate(i = factor(i, levels = 1:length(SampleID)))
+tp = ti1 %>% inner_join(tps[,c('SampleID','i')], by = 'SampleID')
+tps = tp %>% count(SampleID, i, Tissue, Genotype)
+p = ggplot(tp) +
+    geom_boxplot(aes(x = i, y = pref, color = Genotype), outlier.shape = NA, width = .7) +
+    scale_x_discrete(name = 'num. genes', breaks = tps$i, labels = tps$n) +
+    scale_y_continuous(name = 'Proportion reads w. B73 allele') +
+    facet_wrap(.~Tissue, scale = 'free', ncol = 3) + 
+    scale_color_aaas() +
+    otheme(xtitle = T, xtext = T, ytitle = T, ytext = T, 
+           ygrid = T, xticks = T, yticks = T,
+           legend.pos = 'bottom.right') +
+    theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 8))
+fo = file.path(dirw, '03.prop.ref.pdf')
+ggsave(p, file = fo, width = 8, height = 10)
+
+tis = ti1 %>%
+    group_by(SampleID, Tissue, Genotype) %>%
+    summarise(n.gene = n(),
+              pcft.q25 = quantile(pcft, .25),
+              pcft.q50 = quantile(pcft, .5),
+              pcft.q75 = quantile(pcft, .75),
+              pref.q25 = quantile(pref, .25, na.rm = T),
+              pref.q50 = quantile(pref, .5, na.rm = T),
+              pref.q75 = quantile(pref, .75, na.rm = T))
+tis %>% 
+    filter(Genotype == 'BxM') %>% 
+    select(SampleID, Tissue, n.gene, pcft.q25, pcft.q50, pcft.q75) %>%
+    print(n=69)
+fo = file.path(dirw, '05.ase.stat.rda')
+save(tis, file = fo)
 #}}}
 
