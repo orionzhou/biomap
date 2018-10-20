@@ -1,6 +1,6 @@
 # biomAP
 
-[This table](/data/05_read_list/me99c.tsv) contains raw sample meta-data, while [this table](/data/05_read_list/me99c.c.tsv) has corrected meta-data (sample `bm252` corrected from `Root` to `Leaf` tissue).
+[This table](https://github.com/orionzhou/maize.expression/blob/master/data/05_read_list/me99c.tsv) contains raw sample meta-data, while [this table](https://github.com/orionzhou/maize.expression/blob/master/data/05_read_list/me99c.c.tsv) has corrected meta-data (sample `bm252` corrected from `Root` to `Leaf` tissue).
   - msi path: `/home/springer/zhoux379/projects/maize.expression/data/05_read_list/me99c.c.tsv`
 
 Intermediate files (\*.fastq, \*.bam) are under msi scratch space:
@@ -12,7 +12,7 @@ Intermediate files (\*.fastq, \*.bam) are under msi scratch space:
   - `31_featurecounts`: Read count tables for 46,117 Ensembl Plants v37 genes
   - `33_ase`: intermediate files in the allele count pipeline
 
-[Mapping stats table](/data/11_qc/me99c/10.mapping.stat.tsv) contains trimming, mapping and counting statistics for each sample with the following columns:
+[Mapping stats table](https://github.com/orionzhou/maize.expression/blob/master/data/11_qc/me99c/10.mapping.stat.tsv) contains trimming, mapping and counting statistics for each sample with the following columns:
   - msi path: `/home/springer/zhoux379/projects/maize.expression/data/11_qc/me99c/10.mapping.stat.tsv`
   - Sample meta data: `SampleID`, `Tissue`, `Genotype`, `Treatment`, `Replicate`: 
   - Trimming statistics: `total`, `surviving`, `surviving_f`, `surviving_r`, `dropped`
@@ -33,8 +33,8 @@ Intermediate files (\*.fastq, \*.bam) are under msi scratch space:
     - `Assigned`: reads assigned to exonic regions and thus counted
     - `Unassigned_MultiMapping`, `Unassigned_NoFeatures`, `Unassigned_Ambiguity`, `Unassigned_Unmapped`: reads not counted due to various reasons
     
-R data file (msi path: `/home/springer/zhoux379/projects/maize.expression/data/11_qc/me99c/20.rc.norm.rda`) containing raw read count tables and normalized expression values, with the following objects (tibbles):
-* tl - tibble for library (sample), with columns:
+R data file (msi path: `/home/springer/zhoux379/projects/biomap/data/41_qc/10.rc.dom.ase.rda`) containing raw read count tables and normalized expression values, with the following objects (tibbles):
+* th - tibble for library (sample), with columns:
   * `SampleID`: bm001 - bm467
   * ` Tissue`: Leaf, Internode, Root, etc.
   * `Genotype`: B73, Mo17xPH207, etc
@@ -51,5 +51,9 @@ R data file (msi path: `/home/springer/zhoux379/projects/maize.expression/data/1
   * `rFPKM`: raw FPKM calculated using rCPM and gene exon length
   * `CPM`: CPM calculated by edgeR (`CPM = rCPM / normFactor`)
   * `FPKM`: FPKM calculated using CPM and gene exon length
-
+* ta - tibble with allele-specific read counts
+  * `SampleID`: bm001 - bm467
+  * `gid`: AGP_v4 Gene ID 
+  * `n0`, `n1`: number of reads supporting the paternal and maternal allele
+  * `ncft`: number of reads with 'conflicting' evidence supporting both the paternal and maternal alleles, this is rare and most often caused by mis-alignment around InDel regions.
 
