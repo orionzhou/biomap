@@ -15,7 +15,6 @@ require(ggsci)
 require(ggrepel)
 require(scales)
 require(pheatmap)
-source("circlePlot.R")
 options(stringsAsFactors = F)
 dirr = '~/git/luffy/r'
 source(file.path(dirr, 'plot.R'))
@@ -25,8 +24,6 @@ source('~/projects/genomes/src/ge.fun.r')
 
 dirp = '~/projects/biomap'
 dird = file.path(dirp, 'data')
+tissues5 = c('Root','Leaf','Internode','Seedling','Endosperm')
 #}}}
-
-
-
 
