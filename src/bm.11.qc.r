@@ -155,31 +155,44 @@ ggsave(p, file = fo, width = 9, height = 8.5)
 #}}}
 
 #{{{ ASE stats / QC
-ti1 = ta %>% inner_join(th[,1:3], by = 'SampleID') %>%
+tp = ta %>% inner_join(th[,1:5], by = 'SampleID') %>%
     mutate(ntc = n0 + n1 + ncft, nt = n0 + n1,
            pcft = ncft / ntc, pref = n0 / nt) %>%
-    filter(nt >= 10, pcft <= .05)
+    filter(ntc >= 20)
 
-tps = th %>% mutate(Tissue = factor(Tissue, levels = tissues23)) %>%
-    arrange(Tissue, Genotype, Replicate) %>%
-    mutate(i = 1:length(SampleID)) 
-tpx = tps %>% group_by(Tissue) %>%
-    summarise(xmed = mean(i), xmin = min(i), xmax = max(i)) %>% ungroup()
-tps = tps %>% mutate(i = factor(i, levels = 1:length(SampleID)))
-tp = ti1 %>% inner_join(tps[,c('SampleID','i')], by = 'SampleID')
-tps = tp %>% count(SampleID, i, Tissue, Genotype)
 p = ggplot(tp) +
-    geom_boxplot(aes(x = i, y = pref, color = Genotype), outlier.shape = NA, width = .7) +
-    scale_x_discrete(name = 'num. genes', breaks = tps$i, labels = tps$n) +
-    scale_y_continuous(name = 'Proportion reads w. B73 allele') +
-    facet_wrap(.~Tissue, scale = 'free', ncol = 3) + 
-    scale_color_aaas() +
+    geom_boxplot(aes(x = SampleID, y = pcft, color = inbred), outlier.shape = NA, width = .7) +
+    scale_x_discrete(breaks = tp$SampleID, labels = tp$Genotype) +
+    scale_y_continuous(name = 'Proportion conflicting reads') +
+    coord_flip() +
+    facet_wrap(.~Tissue, scale = 'free', ncol = 5) + 
+    scale_color_aaas(labels = c('inbred','hybrid')) +
     otheme(xtitle = T, xtext = T, ytitle = T, ytext = T, 
            ygrid = T, xticks = T, yticks = T,
-           legend.pos = 'bottom.right') +
-    theme(axis.text.x = element_text(angle = 30, hjust = 1, size = 8))
-fo = file.path(dirw, '03.prop.ref.pdf')
-ggsave(p, file = fo, width = 8, height = 10)
+           legend.pos = 'top.right') +
+    theme(axis.text.y = element_text(size = 7))
+fo = file.path(dirw, '15.ase.pcft.pdf')
+ggsave(p, file = fo, width = 10, height = 12)
+
+tp = ta %>% inner_join(th[,1:5], by = 'SampleID') %>%
+    mutate(ntc = n0 + n1 + ncft, nt = n0 + n1,
+           pcft = ncft / ntc, pref = n0 / nt) %>%
+    filter(nt >= 20)
+tps = tp %>% count(SampleID, Genotype, Tissue) %>%
+    mutate(txt = sprintf("%s:%d", Genotype, n))
+p = ggplot(tp) +
+    geom_boxplot(aes(x = SampleID, y = pref, color = inbred), outlier.shape = NA, width = .7) +
+    scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
+    scale_y_continuous(name = 'Proportion reads w. B73 allele') +
+    coord_flip() +
+    facet_wrap(.~Tissue, scale = 'free', ncol = 5) + 
+    scale_color_aaas(labels = c('inbred','hybrid')) +
+    otheme(xtitle = T, xtext = T, ytitle = T, ytext = T, 
+           ygrid = T, xticks = T, yticks = T,
+           legend.pos = 'top.center.out') +
+    theme(axis.text.y = element_text(size = 7))
+fo = file.path(dirw, '15.ase.pref.pdf')
+ggsave(p, file = fo, width = 10, height = 12)
 
 tis = ti1 %>%
     group_by(SampleID, Tissue, Genotype) %>%
@@ -190,11 +203,11 @@ tis = ti1 %>%
               pref.q25 = quantile(pref, .25, na.rm = T),
               pref.q50 = quantile(pref, .5, na.rm = T),
               pref.q75 = quantile(pref, .75, na.rm = T))
-tis %>% 
-    filter(Genotype == 'BxM') %>% 
-    select(SampleID, Tissue, n.gene, pcft.q25, pcft.q50, pcft.q75) %>%
-    print(n=69)
-fo = file.path(dirw, '05.ase.stat.rda')
-save(tis, file = fo)
+
+to = tis %>% 
+    select(SampleID, Tissue, n.gene, pcft.q25, pcft.q50, pcft.q75)
+to = tis
+fo = file.path(dirw, '15.ase.stats.tsv')
+write_tsv(to, fo)
 #}}}
 
