@@ -33,7 +33,7 @@ Intermediate files (\*.fastq, \*.bam) are under msi scratch space:
     - `Assigned`: reads assigned to exonic regions and thus counted
     - `Unassigned_MultiMapping`, `Unassigned_NoFeatures`, `Unassigned_Ambiguity`, `Unassigned_Unmapped`: reads not counted due to various reasons
     
-R data file (msi path: `/home/springer/zhoux379/projects/biomap/data/41_qc/10.rc.dom.ase.rda`) containing raw read count tables and normalized expression values, with the following objects (tibbles):
+R data file (msi path: `/home/springer/zhoux379/projects/biomap/data/41_qc/10.rc.dom.ase.rda`) containing raw read count tables, normalized expression values and allele-specific read counts:
 * th - tibble for library (sample), with columns:
   * `SampleID`: bm001 - bm467
   * ` Tissue`: Leaf, Internode, Root, etc.
