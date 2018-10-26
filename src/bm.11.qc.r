@@ -1,6 +1,6 @@
 source("bm.fun.r")
 dirw = file.path(dird, '41_qc')
-fi = file.path(dirw, '10.rc.norm.ase.rda')
+fi = file.path(dirw, '10.rc.dom.ase.rda')
 x = load(fi)
 
 #{{{ prepare for hclust and pca 
@@ -91,8 +91,8 @@ tp = as_tibble(tsne$Y) %>%
     mutate(Tissue = factor(Tissue, levels = tissues5))
 #tps = tp %>% mutate(txt = ifelse(Genotype == 'BxM' & Replicate == 1, Tissue, ''))
 p_tsne = ggplot(tp) +
-    #geom_text_repel(data=tps, aes(x=V1,y=V2,label=txt), size = 3, alpha = .8) +
     geom_point(aes(x = V1, y = V2, shape=inbred, color=Tissue), size = 2) +
+    geom_text_repel(aes(x=V1,y=V2,label=Genotype), size = 2, alpha = .8) +
     scale_x_continuous(name = 'tSNE-1') +
     scale_y_continuous(name = 'tSNE-2') +
     scale_shape_manual(values = shapes2, labels = c("inbred", "hybrid")) +
@@ -104,7 +104,9 @@ p_tsne = ggplot(tp) +
     theme(axis.ticks.length = unit(0, 'lines'))
     #theme(panel.border = element_blank()) +
 fp = sprintf("%s/12.tsne.pdf", dirw)
-ggsave(p_tsne, filename = fp, width = 7, height = 7)
+#ggsave(p_tsne, filename = fp, width = 7, height = 7)
+fp = sprintf("%s/12.tsne.label.pdf", dirw)
+ggsave(p_tsne, filename = fp, width = 10, height = 10)
 #}}}
 
 #{{{ # heatmap
