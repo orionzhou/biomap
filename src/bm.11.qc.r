@@ -12,6 +12,7 @@ e = tw %>% filter(gid %in% gids) %>% select(-gid)
 dim(e)
 cols5 = pal_d3()(5)
 shapes2 = c(15,1)
+shapes5 = c(0,4,1,2,15)
 #}}}
 
 #{{{ hclust 
@@ -88,25 +89,30 @@ cols23 = c(pal_ucscgb()(23), pal_uchicago()(5))
 tp = as_tibble(tsne$Y) %>%
     add_column(SampleID = colnames(tt)[-1]) %>%
     inner_join(th, by = 'SampleID') %>%
-    mutate(Tissue = factor(Tissue, levels = tissues5))
-#tps = tp %>% mutate(txt = ifelse(Genotype == 'BxM' & Replicate == 1, Tissue, ''))
+    mutate(Tissue = factor(Tissue, levels = tissues5)) %>%
+    separate(Genotype, c('pa1','pa2'), sep = 'x') %>%
+    mutate(gt = ifelse(inbred, 'inbred',
+                ifelse(pa2 == 'B73', 'hybrid - ?xB73',
+                ifelse(pa2 == 'Mo17', 'hybrid - ?xMo17',
+                ifelse(pa2 == 'PH207', 'hybrid - ?xPH207', 'hybrid - others')))))
+
 p_tsne = ggplot(tp) +
-    geom_point(aes(x = V1, y = V2, shape=inbred, color=Tissue), size = 2) +
-    geom_text_repel(aes(x=V1,y=V2,label=Genotype), size = 2, alpha = .8) +
+    geom_point(aes(x = V1, y = V2, shape=gt, color=Tissue), size = 2) +
+    #geom_text_repel(aes(x=V1,y=V2,label=Genotype), size = 2, alpha = .8) +
     scale_x_continuous(name = 'tSNE-1') +
     scale_y_continuous(name = 'tSNE-2') +
-    scale_shape_manual(values = shapes2, labels = c("inbred", "hybrid")) +
+    scale_shape_manual(values = shapes5) +
     scale_color_manual(values = cols5) +
-    otheme(legend.pos = 'bottom.right', legend.dir = 'v',
+    otheme(legend.pos = 'top.right', legend.dir = 'v',
            xtitle = T, ytitle = T, xtext = T, ytext = T,
            xgrid = T, ygrid = T,
            margin = c(.2,.2,.2,.2)) +
     theme(axis.ticks.length = unit(0, 'lines'))
     #theme(panel.border = element_blank()) +
 fp = sprintf("%s/12.tsne.pdf", dirw)
-#ggsave(p_tsne, filename = fp, width = 7, height = 7)
+ggsave(p_tsne, filename = fp, width = 7, height = 7)
 fp = sprintf("%s/12.tsne.label.pdf", dirw)
-ggsave(p_tsne, filename = fp, width = 10, height = 10)
+#ggsave(p_tsne, filename = fp, width = 10, height = 10)
 #}}}
 
 #{{{ # heatmap
