@@ -184,7 +184,7 @@ th = ti %>% select(SampleID, Tissue, Genotype, Replicate, inbred) %>%
 fa = file.path(diri, '../08_raw_output', sid, 'ase.tsv') 
 ta = read_tsv(fa)
 
-fo = file.path(dirw, '10.rc.dom.ase.rda')
+fo = file.path(dirw, '10.rc.ase.rda')
 save(th, tm, ta, file = fo)
 #}}}
 

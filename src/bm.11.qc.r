@@ -159,16 +159,13 @@ fo = sprintf("%s/08.heatmap.pdf", dirw)
 ggsave(p, file = fo, width = 9, height = 8.5)
 #}}}
 
-#{{{
-#}}}
-
 #{{{ ASE stats / QC
 tp = ta %>% inner_join(th[,1:5], by = 'SampleID') %>%
     mutate(ntc = n0 + n1 + ncft, nt = n0 + n1,
            pcft = ncft / ntc, pref = n0 / nt) %>%
     filter(ntc >= 20)
 tps = tp %>% count(SampleID, Genotype, Tissue) %>%
-    mutate(txt = sprintf("%s:%d", Genotype, n))
+    mutate(txt = sprintf("%s:%s:%d", SampleID, Genotype, n))
 p = ggplot(tp) +
     geom_boxplot(aes(x = SampleID, y = pcft, color = inbred), outlier.shape = NA, width = .7) +
     scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
@@ -181,14 +178,14 @@ p = ggplot(tp) +
            legend.pos = 'top.right') +
     theme(axis.text.y = element_text(size = 7))
 fo = file.path(dirw, '15.ase.pcft.pdf')
-ggsave(p, file = fo, width = 10, height = 12)
+ggsave(p, file = fo, width = 12, height = 12)
 
 tp = ta %>% inner_join(th[,1:5], by = 'SampleID') %>%
     mutate(ntc = n0 + n1 + ncft, nt = n0 + n1,
            pcft = ncft / ntc, pref = n0 / nt) %>%
     filter(nt >= 20)
 tps = tp %>% count(SampleID, Genotype, Tissue) %>%
-    mutate(txt = sprintf("%s:%d", Genotype, n))
+    mutate(txt = sprintf("%s:%s:%d", SampleID, Genotype, n))
 p = ggplot(tp) +
     geom_boxplot(aes(x = SampleID, y = pref, color = inbred), outlier.shape = NA, width = .7) +
     scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
@@ -201,7 +198,7 @@ p = ggplot(tp) +
            legend.pos = 'bottom.right') +
     theme(axis.text.y = element_text(size = 7))
 fo = file.path(dirw, '15.ase.pref.pdf')
-ggsave(p, file = fo, width = 10, height = 12)
+ggsave(p, file = fo, width = 12, height = 12)
 
 tis = ti1 %>%
     group_by(SampleID, Tissue, Genotype) %>%
