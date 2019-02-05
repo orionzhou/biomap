@@ -1,12 +1,8 @@
-source("bm.fun.r")
-dirw = file.path(dirp, 'analysis/06_sample_swap')
-fi = file.path(dirw, "../03_raw_data/20.rc.norm.RData")
-x = load(fi)
-x
-fh = file.path(dirw, "../01_exp_design/10.reads.tsv")
-th = read_tsv(fh) %>%
-    separate(Genotype, c("pa1", "pa2"), "x", remove = F) %>%
-    replace_na(list(pa2=''))
+source("functions.R")
+dirw = file.path(dird, '06_sample_swap')
+fi = file.path(dird, "41_qc/10.rc.ase.rds")
+res = readRDS(fi)
+th = res$th; tm = res$tm; ta = res$ta
 
 #{{{ collect gtcheck results
 tck = tibble()

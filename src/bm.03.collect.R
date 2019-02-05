@@ -1,11 +1,11 @@
-source("bm.fun.r")
+source("functions.R")
 dirw = file.path(dird, '41_qc')
 
 sid = 'me99c'
-diri = '~/projects/maize.expression/data/11_qc'
+diri = '~/projects/rnaseq/data'
 
 #{{{ read mapping stats & plot
-fi = file.path(diri, sid, '10.mapping.stat.tsv') 
+fi = file.path(diri, '11_qc', sid, '10.mapping.stat.tsv')
 ti = read_tsv(fi)
 types = c("FailedQC", "Unmap", "Map_LowQual", "Map_HighQual", 'Total')
 tx = ti %>%
@@ -24,7 +24,7 @@ tx = ti %>%
 tx1 = tx %>% mutate(mreads = ReadPairCount/1000000) %>% select(-ReadPairCount)
 tps = tx1 %>% filter(type == 'Total') %>% select(-type) %>%
     rename(total = mreads)
-tp = tx1 %>% 
+tp = tx1 %>%
     filter(type != 'Total') %>%
     inner_join(tps, by = c('Tissue','Genotype','inbred')) %>%
     mutate(prop = mreads/total) %>%
@@ -174,21 +174,24 @@ ggarrange(p1, nrow = 1, ncol = 1)  %>%
 #}}}
 #}}}
 
-#{{{ save to 
-fi = file.path(diri, sid, '20.rc.norm.rda') 
-x = load(fi)
-fi = file.path(diri, sid, '10.mapping.stat.tsv') 
-ti = read_tsv(fi)
-th = ti %>% select(SampleID, Tissue, Genotype, Replicate, inbred) %>%
+#{{{ save
+th = get_read_list(diri, sid)
+#
+fi = file.path(diri, '08_raw_output', sid, 'cpm.rds')
+res = readRDS(fi)
+tl = res$tl; tm = res$tm
+th = th %>% select(SampleID, Tissue, Genotype, Replicate, inbred) %>%
     inner_join(tl, by = 'SampleID')
-fa = file.path(diri, '../08_raw_output', sid, 'ase.tsv') 
+#
+fa = file.path(diri, '08_raw_output', sid, 'ase.tsv')
 ta = read_tsv(fa)
 
-fo = file.path(dirw, '10.rc.ase.rda')
-save(th, tm, ta, file = fo)
+res = list(th=th,tm=tm,ta=ta)
+fo = file.path(dirw, '10.rc.ase.rds')
+saveRDS(res, file = fo)
 #}}}
 
-#{{{ ## save to 00.table.rda
+#{{{ ## save to 00.table.rds
 tissues6 = c('coleoptile_tip', 'radicle_root', 'embryo_imbibedseed', 'seedlingleaf_11DAS', 'seedlingroot_11DAS', 'seedlingmeristem_11DAS')
 tt = ti %>%
     mutate(Condition = ifelse(Tissue %in% tissues6, 'Growth chamber', 'Field')) %>%
@@ -197,13 +200,13 @@ tt = ti %>%
            MappingRate = pair_map/surviving,
            UniqueMappingRate = pair_map_hq/surviving,
            AssignedRate = Assigned/surviving) %>%
-    mutate(MappingRate = sprintf("%.1f%%", MappingRate*100), 
-           UniqueMappingRate = sprintf("%.1f%%", UniqueMappingRate*100), 
+    mutate(MappingRate = sprintf("%.1f%%", MappingRate*100),
+           UniqueMappingRate = sprintf("%.1f%%", UniqueMappingRate*100),
            AssignedRate = sprintf("%.1f%%", AssignedRate*100)) %>%
     select(SampleID, Tissue, Genotype, Replicate, Condition,
            TotalReadPair, TrimmedReadPair,
            MappingRate, UniqueMappingRate, AssignedRate)
-ft = file.path(dirw, "00.table.rda")
-save(tt, file = ft)
+ft = file.path(dirw, "00.table.rds")
+saveRDS(tt, file = ft)
 #}}}
 

@@ -1,5 +1,4 @@
-require(tidyverse)
-source("bm.fun.r")
+source("functions.R")
 dirw = file.path(dird, '01_exp_design')
 
 #{{{ rename samples
@@ -37,12 +36,12 @@ get_line_count <- function(fx) {
 }
 fi = file.path(dirw, "10.reads.tsv")
 ti = read_tsv(fi)
-tg = ti %>% distinct(type, genotype) %>% 
+tg = ti %>% distinct(type, genotype) %>%
     arrange(desc(type), genotype) %>%
     mutate(fvr = sprintf("%s/data/variants_rnaseq/%s.bed", dirw, genotype),
            fvg = sprintf("%s/data/variants_reseq/%s.bed", dirw, genotype),
            num_snp_rnaseq = sapply(fvr, get_line_count),
-           num_snp_reseq = sapply(fvg, get_line_count)) 
+           num_snp_reseq = sapply(fvg, get_line_count))
 
 to = tg %>% select(-fvr, -fvg)
 fo = file.path(dirw, '../05.num_snps.tsv')

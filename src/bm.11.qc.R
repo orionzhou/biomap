@@ -1,13 +1,14 @@
-source("bm.fun.r")
+source("functions.R")
 dirw = file.path(dird, '41_qc')
-fi = file.path(dirw, '10.rc.dom.ase.rda')
-x = load(fi)
+fi = file.path(dirw, "10.rc.ase.rds")
+res = readRDS(fi)
+th = res$th; tm = res$tm; ta = res$ta
 
-#{{{ prepare for hclust and pca 
+#{{{ prepare for hclust and pca
 ths = th %>% distinct(Tissue, Genotype)
 tw = tm %>% select(SampleID, gid, CPM) %>% spread(SampleID, CPM)
 t_exp = tm %>% group_by(gid) %>% summarise(n.exp = sum(CPM>=1))
-gids = t_exp %>% filter(n.exp >= (ncol(tw)-1) * .5) %>% pull(gid)
+gids = t_exp %>% filter(n.exp >= (ncol(tw)-1) * .7) %>% pull(gid)
 e = tw %>% filter(gid %in% gids) %>% select(-gid)
 dim(e)
 cols5 = pal_d3()(5)
@@ -15,7 +16,9 @@ shapes2 = c(15,1)
 shapes5 = c(0,4,1,2,15)
 #}}}
 
-#{{{ hclust 
+#{{{ hclust
+require(ape)
+require(ggtree)
 cor_opt = "pearson"
 #cor_opt = "spearman"
 hc_opt = "ward.D"
@@ -24,22 +27,22 @@ ehc <- hclust(edist, method = hc_opt)
 tree = as.phylo(ehc)
 lnames = ehc$labels[ehc$order]
 #
-tp = th %>% mutate(taxa = SampleID, lab = SampleID) 
+tp = th %>% mutate(taxa = SampleID, lab = SampleID)
 tp = tp %>% mutate(lab = sprintf("%s %s", lab, Tissue), lab)
 tp = tp %>% mutate(lab = sprintf("%s %s", lab, Genotype), lab)
 tp = tp %>% mutate(lab = sprintf("%s %s", lab, Replicate), lab)
 t_hc = tp %>% select(taxa, everything())
 
-thp = mutate(th, 
+thp = mutate(th,
     lab = sprintf("%s %s %s %s", SampleID, Tissue, Genotype, Replicate))
-p1 = ggtree(tree) + 
+p1 = ggtree(tree) +
     #geom_tiplab(size = 4, color = 'black', offset = 0.04) +
-    ggplot2::xlim(0, 70) + 
+    scale_x_continuous(expand = expand_scale(mult=c(.02, .2))) +
+    scale_y_discrete(expand = c(.01,0)) +
     theme_tree2()
-p1 = p1 %<+% thp + 
-    geom_tiplab(aes(label = lab), size = 2, offset = 0.04) + 
-    #geom_text(aes(color = as.character(gt_ok), label = gt), size = 4, nudge_x = 6, hjust = 0) + 
-    scale_color_manual(values = c("black", "royalblue", "tomato"))
+p1 = p1 %<+% thp +
+    geom_tiplab(aes(label=lab, color=Tissue), size = 2, offset = 0.04) +
+    scale_color_npg()
 fo = file.path(dirw, '08.hclust.pdf')
 ggsave(p1, filename = fo, width = 12, height = 30)
 #}}}
@@ -82,7 +85,7 @@ t_exp = tm %>% group_by(gid) %>% summarise(n.exp = sum(CPM>=1))
 gids = t_exp %>% filter(n.exp >= (ncol(tw)-1) * .7) %>% pull(gid)
 tt = tw %>% filter(gid %in% gids)
 dim(tt)
-tsne <- Rtsne(t(as.matrix(tt[-1])), dims = 2, perplexity=30, verbose=T, 
+tsne <- Rtsne(t(as.matrix(tt[-1])), dims = 2, perplexity=30, verbose=T,
               pca = T, max_iter = 500)
 
 cols23 = c(pal_ucscgb()(23), pal_uchicago()(5))
@@ -90,7 +93,7 @@ tp = as_tibble(tsne$Y) %>%
     add_column(SampleID = colnames(tt)[-1]) %>%
     inner_join(th, by = 'SampleID') %>%
     mutate(Tissue = factor(Tissue, levels = tissues5)) %>%
-    separate(Genotype, c('pa1','pa2'), sep = 'x') %>%
+    separate(Genotype, c('pa1','pa2'), sep='x', extra='merge',fill='right') %>%
     mutate(gt = ifelse(inbred, 'inbred',
                 ifelse(pa2 == 'B73', 'hybrid - ?xB73',
                 ifelse(pa2 == 'Mo17', 'hybrid - ?xMo17',

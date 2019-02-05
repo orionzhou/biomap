@@ -1,4 +1,4 @@
-require(tidyverse)
+source("functions.R")
 dirw = '/home/springer/zhoux379/projects/biomap/data/variants'
 
 fv = file.path(dirw, "db.snp")

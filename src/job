@@ -1,4 +1,4 @@
-#PBS -l nodes=1:ppn=1,mem=30gb,walltime=2:00:00
+#PBS -l nodes=1:ppn=1,mem=30gb,walltime=15:00:00
 ##PBS -l nodes=1:ppn=24,mem=62gb,walltime=10:00:00
 #PBS -m ae
 #PBS -M zhoux379@umn.edu
@@ -6,5 +6,6 @@
 
 cd $biomap/src
 #biomap.py
-Rscript --no-init-file --no-restore bm.12.clean.r
+#Rscript --no-init-file --no-restore bm.12.clean.R
+Rscript --no-init-file --no-restore bm.15.de.R
 
