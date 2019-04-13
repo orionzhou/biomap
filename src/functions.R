@@ -1,5 +1,5 @@
-require(rmaize)
-dirr = '~/git/rmaize/R'
+require(devtools)
+load_all('~/git/rmaize')
 dirp = '~/projects/biomap'
 dird = file.path(dirp, 'data')
 tissues5 = c('Root','Leaf','Internode','Seedling','Endosperm')

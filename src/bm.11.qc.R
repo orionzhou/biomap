@@ -174,9 +174,9 @@ p = ggplot(tp) +
     scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
     scale_y_continuous(name = 'Proportion conflicting reads') +
     coord_flip() +
-    facet_wrap(.~Tissue, scale = 'free', ncol = 5) + 
+    facet_wrap(.~Tissue, scale = 'free', ncol = 5) +
     scale_color_aaas(labels = c('inbred','hybrid')) +
-    otheme(xtitle = T, xtext = T, ytitle = F, ytext = T, 
+    otheme(xtitle = T, xtext = T, ytitle = F, ytext = T,
            ygrid = T, xticks = T, yticks = T,
            legend.pos = 'top.right') +
     theme(axis.text.y = element_text(size = 7))
@@ -194,9 +194,9 @@ p = ggplot(tp) +
     scale_x_discrete(breaks = tps$SampleID, labels = tps$txt) +
     scale_y_continuous(name = 'Proportion reads w. paternal allele') +
     coord_flip() +
-    facet_wrap(.~Tissue, scale = 'free', ncol = 5) + 
+    facet_wrap(.~Tissue, scale = 'free', ncol = 5) +
     scale_color_aaas(labels = c('inbred','hybrid')) +
-    otheme(xtitle = T, xtext = T, ytitle = F, ytext = T, 
+    otheme(xtitle = T, xtext = T, ytitle = F, ytext = T,
            ygrid = T, xticks = T, yticks = T,
            legend.pos = 'bottom.right') +
     theme(axis.text.y = element_text(size = 7))
