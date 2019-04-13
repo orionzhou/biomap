@@ -13,6 +13,8 @@
 ## Results
 * [Per-sample SNP statistics](../data/variants/06.stat.snp.txt)
 * [Per-sample Indel statistics](../data/variants/06.stat.indel.txt)
+* Final variants:
+    `/home/springer/zhoux379/projects/biomap/data/variants/01.vcf.gz`
 * Sample genotype table with variant effect annotation:
 
     `/home/springer/zhoux379/projects/biomap/data/variants/10.tsv.gz`
