@@ -15,6 +15,6 @@
 * [Per-sample Indel statistics](../data/variants/06.stat.indel.txt)
 * Sample genotype table with variant effect annotation:
 
-    /home/springer/zhoux379/projects/biomap/data/variants/10.tsv.gz
+    `/home/springer/zhoux379/projects/biomap/data/variants/10.tsv.gz`
 
 * Sample phylogeny (to be created)
