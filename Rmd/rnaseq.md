@@ -18,25 +18,15 @@
 ### QC:
 - [read trimming and mapping statitics](/data/41_qc/01.readmapping.pdf)
 - [PCA plot](/data/41_qc/12.pca.pdf)
-- [t-SNE plot](/data/41_qc/12.tsne.pdf): note the much improved separation of tissues compared to PCA plot, and the separation of leaf samples into two distinct clusters
-
-### ASE analysis:
-- [proportion conflicting reads for each sample](/data/41_qc/15.ase.pcft.pdf): 
-  genes in most samples have very low proportion of conflicting reads
-  (typically less than 2%); abnormally high rates of conflicting reads
-  might indicate sample genotype mis-labelling
-- [proportion reads w. paternal allele in each sample](/data/41_qc/15.ase.pref.pdf):
-  numbers indicate sample size (i.e., number of genes). most inbred 
-  samples have 0 paternal allele proportion while hybrid samples 
-  have 0.5 parternal allele proportion, exceptions may indicate 
-  sample genotype mis-labelling
-
-### [Mapping stats table](https://github.com/orionzhou/rnaseq/blob/master/data/raw_output/me99c/bamstats.tsv)
-  contains trimming, mapping and counting statistics for each sample with the following columns:
+- [t-SNE plot](/data/41_qc/12.tsne.pdf):
+  - improved separation of tissues compared to PCA plot
+  - separation of leaf samples into two distinct clusters
+- [mapping stats table](https://github.com/orionzhou/rnaseq/blob/master/data/raw_output/me99c/bamstats.tsv):
+  sample-wise trimming, mapping and counting statistics with following columns:
   - msi path: `/home/springer/zhoux379/projects/rnaseq/data/raw_output/bamstats.tsv`
-  - Sample meta data: `SampleID`, `Tissue`, `Genotype`, `Treatment`, `Replicate`:
-  - Trimming statistics: `total`, `surviving`, `surviving_f`, `surviving_r`, `dropped`
-  - Mapping statistics:
+  - `SampleID`, `Tissue`, `Genotype`, `Treatment`, `Replicate`: sample meta-data
+  - trimming stats: `total`, `surviving`, `surviving_f`, `surviving_r`, `dropped`
+  - mapping stats:
     - `pair`: read pairs
       - `pair_bad`, `pair_dup`: pairs that failed QC or duplicates
       - `pair_map`: mapped pairs (both ends)
@@ -46,23 +36,41 @@
       - `unpair_bad`, `unpair_dup`: singletons that failed QC or duplicates
       - `unpair_map`: mapped reads
       - `unpair_unmap`: unmapped reads
-    - `pair_map_hq`, `pair_orphan_hq`, `unpair_map_hq`: pairs/reads mapped with high quality (i.e., unique)
+    - `pair_map_hq`, `pair_orphan_hq`, `unpair_map_hq`: pairs/reads mapped
+      with high quality (i.e., unique)
     - `pair_map0`, `pair_orphan0`, `unpair_map0`: pairs/reads mapped with 0 mismatch
-    - `pair_map_hq0`, `pair_orphan_hq0`, `unpair_map_hq0`: pairs/reads mapped with high quality (i.e., unique) and with 0 mismatch
-  - Read counting statistics:
+    - `pair_map_hq0`, `pair_orphan_hq0`, `unpair_map_hq0`: pairs/reads mapped 
+      with high quality (i.e., unique) and with 0 mismatch
+  - read counting stats:
     - `Assigned`: reads assigned to exonic regions and thus counted
-    - `Unassigned_MultiMapping`, `Unassigned_NoFeatures`, `Unassigned_Ambiguity`, `Unassigned_Unmapped`: reads not counted due to various reasons
+    - `Unassigned_MultiMapping`, `Unassigned_NoFeatures`, `Unassigned_Ambiguity`,
+      `Unassigned_Unmapped`: reads not counted due to various reasons
+- ASE analysis:
+  - [proportion conflicting reads for each sample](/data/41_qc/15.ase.pcft.pdf): 
+    genes in most samples have very low proportion of conflicting reads
+    (typically less than 2%); abnormally high rates of conflicting reads
+    might indicate sample genotype mis-labelling
+  - [proportion reads w. paternal allele in each sample](/data/41_qc/15.ase.pref.pdf):
+    numbers indicate sample size (i.e., number of genes). most inbred 
+    samples have 0 paternal allele proportion while hybrid samples 
+    have 0.5 parternal allele proportion, exceptions may indicate 
+    sample genotype mis-labelling
 
-### R data file (msi path: `/home/springer/zhoux379/projects/biomap/data/41_qc/10.rc.ase.rda`)
-  containing raw read count tables, normalized expression values and allele-specific read counts:
+### R data file
+* msi location: `/home/springer/zhoux379/projects/biomap/data/41_qc/10.rc.ase.rda`
+* contains raw read count tables, normalized expression values and 
+  allele-specific read counts:
 * th - tibble for library (sample), with columns:
   * `SampleID`: bm001 - bm467
   * ` Tissue`: Leaf, Internode, Root, etc.
   * `Genotype`: B73, Mo17xPH207, etc
   * `Treatment`: replicate 1 or 2
   * `inbred`: whether this is the inbred parent (TRUE) or hybrid (FALSE)
-  * `sizeFactor`, `libSize`: library size and normalization factor calculated using the median log ratio approach by DESeq2, accounts for library size
-  * `normFactor`: library normalzation factor computed by edgeR using the TMM approach, does NOT account for library size
+  * `sizeFactor`, `libSize`: library size and normalization factor 
+    calculated using the median log ratio approach by DESeq2, accounts 
+    for library size
+  * `normFactor`: library normalzation factor computed by edgeR 
+    using the TMM approach, does NOT account for library size
 * tm - tibble for biomap expression data
   * `gid`: Gene ID (AGP_v4, Ensembl Plants v37, 46,117 in total)
   * `SampleID`: bm001 - bm467
@@ -76,4 +84,6 @@
   * `SampleID`: bm001 - bm467
   * `gid`: AGP_v4 Gene ID
   * `n0`, `n1`: number of reads supporting the paternal and maternal allele
-  * `ncft`: number of reads with 'conflicting' evidence supporting both the paternal and maternal alleles, this is rare and most often caused by mis-alignment around InDel regions.
+  * `ncft`: number of reads with 'conflicting' evidence supporting both 
+    the paternal and maternal alleles, this is rare and most often 
+    caused by mis-alignment around Indel regions.
